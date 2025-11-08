@@ -45,11 +45,22 @@ services:
       - wordpress
     restart: unless-stopped
 
-networks:
-  inception:
-    driver: bridge
 
 volumes:
   mariadb:
-  nginx:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/amalgonn/data/mariadb
   wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/amalgonn/data/wordpress
+
+networks:
+  inception:
+    name: inception
+    driver: bridge

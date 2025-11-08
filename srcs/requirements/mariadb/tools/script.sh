@@ -7,13 +7,13 @@ chown -R mysql:mysql /run/mysqld /var/run/mysqld
 
 
 if [ ! -d "/var/lib/mysql/mysql" ]; then
-    echo "🧩 Initialisation de la base MariaDB..."
+    echo "Initialisation de la base MariaDB..."
 
     mariadb-install-db --user=mysql --datadir=/var/lib/mysql --auth-root-authentication-method=normal
 fi
 
 # Toujours appliquer la config des utilisateurs et de la base
-echo "🚀 Configuration initiale..."
+echo "Configuration initiale..."
 mariadbd --user=mysql --bootstrap <<EOF
 USE mysql;
 FLUSH PRIVILEGES;
@@ -31,5 +31,5 @@ FLUSH PRIVILEGES;
 EOF
 
 # Lancer MariaDB au premier plan
-echo "✅ MariaDB prête — lancement du serveur principal."
+echo "MariaDB prête — lancement du serveur principal."
 exec mariadbd --user=mysql --console

@@ -6,7 +6,7 @@ COMPOSE_FILE := ./srcs/docker-compose.yml
 COMPOSE := docker compose -f $(COMPOSE_FILE)
 
 up:
-	@$(COMPOSE) down -v
+	@$(COMPOSE) down
 	@$(COMPOSE) build --pull
 	@$(COMPOSE) up -d --remove-orphans
 
